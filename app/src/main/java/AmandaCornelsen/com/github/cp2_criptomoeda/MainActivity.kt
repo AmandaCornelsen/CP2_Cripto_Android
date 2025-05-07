@@ -6,7 +6,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import carreiras.com.github.cryptomonitor.service.MercadoBitcoinServiceFactory
+import AmandaCornelsen.com.github.cp2_criptomoeda.service.MercadoBitcoinServiceFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,15 +20,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Configurando a toolbar
         val toolbarMain: Toolbar = findViewById(R.id.toolbar_main)
         configureToolbar(toolbarMain)
 
+        //Configurando o botão Refresh
         val btnRefresh: Button = findViewById(R.id.btn_refresh)
         btnRefresh.setOnClickListener {
             makeRestCall()
         }
     }
-
     private fun configureToolbar(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
         toolbar.setTitleTextColor(getColor(R.color.white))
@@ -52,10 +53,14 @@ class MainActivity : AppCompatActivity() {
                     val lastValue = tickerResponse?.ticker?.last?.toDoubleOrNull()
                     if (lastValue != null) {
                         val numberFormat = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
-                        lblValue.text = numberFormat.format(lastValue)
+                        lblValue.text = numberFormat.format(lastValue as Double)
                     }
 
-                    val date = tickerResponse?.ticker?.date?.let { Date(it * 1000L) }
+                    val date: Date? = if (tickerResponse?.ticker?.date != null) {
+                        Date(tickerResponse.ticker.date * 1000L)
+                    } else {
+                        null
+                    }
                     val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
                     lblDate.text = sdf.format(date)
 

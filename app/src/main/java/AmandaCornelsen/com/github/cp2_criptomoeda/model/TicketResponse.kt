@@ -1,4 +1,4 @@
-package carreiras.com.github.cryptomonitor.model
+package AmandaCornelsen.com.github.cp2_criptomoeda.model
 
 class TickerResponse(
     val ticker: Ticker

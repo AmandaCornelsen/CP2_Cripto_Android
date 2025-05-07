@@ -1,6 +1,6 @@
 package AmandaCornelsen.com.github.cp2_criptomoeda.service
 
-import AmandaCornelsen.com.github.cryptomonitor.model.TickerResponse
+import AmandaCornelsen.com.github.cp2_criptomoeda.model.TickerResponse
 import retrofit2.Response
 import retrofit2.http.GET
 
