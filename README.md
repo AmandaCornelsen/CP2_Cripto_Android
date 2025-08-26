@@ -1,65 +1,65 @@
-# Monitor de CriptoMoedas em Tempo Real
+# Real-Time Cryptocurrency Monitor
 
-Este projeto foi desenvolvido por: **Amanda Cornelsen** 
-
----
-
-##  Sobre o Projeto
-
-Este projeto fornece uma aplicação Android que consome dados em tempo real do mercado de criptomoedas, permitindo ao usuário monitorar valores, tendências e outras informações essenciais de forma direta e intuitiva.
+This project was developed by: **Amanda Cornelsen**
 
 ---
 
-##  Descrição das Partes do Código
+## About the Project
+
+This project provides an Android application that consumes real-time data from the cryptocurrency market, allowing users to monitor prices, trends, and other essential information in a direct and intuitive way.
+
+---
+
+## Code Overview
 
 ### **MainActivity**
-A `MainActivity` é a atividade principal do aplicativo. Suas responsabilidades incluem:
-- Configurar a interface do usuário, incluindo a barra de ferramentas (toolbar).
-- Gerenciar o botão de atualização, permitindo que o usuário atualize manualmente os dados.
-- Realizar chamadas à API do Mercado Bitcoin para buscar informações em tempo real.
-- Exibir o último valor negociado de uma criptomoeda e a data/hora da última atualização.
-- Tratar erros de comunicação com a API, exibindo mensagens apropriadas ao usuário.
+The `MainActivity` is the main activity of the app. Its responsibilities include:
+- Setting up the user interface, including the toolbar.
+- Managing the refresh button, allowing users to manually update data.
+- Making API calls to Mercado Bitcoin to fetch real-time information.
+- Displaying the last traded value of a cryptocurrency and the timestamp of the last update.
+- Handling API communication errors and displaying appropriate messages to the user.
 
 ### **MercadoBitcoinService**
-A interface `MercadoBitcoinService` é responsável por definir o contrato para as chamadas à API do Mercado Bitcoin. Ela utiliza o Retrofit para realizar:
-- Uma chamada GET para o endpoint `/api/BTC/ticker/`, que retorna os dados mais recentes da criptomoeda Bitcoin.
+The `MercadoBitcoinService` interface defines the contract for API calls to Mercado Bitcoin. It uses Retrofit to perform:
+- A GET request to the `/api/BTC/ticker/` endpoint, returning the latest Bitcoin data.
 
 ### **MercadoBitcoinServiceFactory**
-A classe `MercadoBitcoinServiceFactory` é responsável por configurar e instanciar o serviço `MercadoBitcoinService`. Suas responsabilidades incluem:
-- Definir a URL base da API (`https://www.mercadobitcoin.net/`).
-- Configurar o Retrofit com o conversor JSON `GsonConverterFactory`.
-- Criar e retornar uma instância configurada do `MercadoBitcoinService`.
+The `MercadoBitcoinServiceFactory` class is responsible for configuring and instantiating the `MercadoBitcoinService`. Its responsibilities include:
+- Setting the base API URL (`https://www.mercadobitcoin.net/`).
+- Configuring Retrofit with the `GsonConverterFactory` for JSON conversion.
+- Creating and returning a configured instance of `MercadoBitcoinService`.
 
-### **TickerResponse e Ticker**
-As classes `TickerResponse` e `Ticker` definem o modelo de dados retornado pela API do Mercado Bitcoin. Elas mapeiam as informações recebidas no formato JSON para objetos Kotlin:
-- `TickerResponse` encapsula o objeto `Ticker`.
-- `Ticker` contém os seguintes campos:
-  - **high**: Maior valor de negociação no período.
-  - **low**: Menor valor de negociação no período.
-  - **vol**: Volume negociado.
-  - **last**: Último valor negociado.
-  - **buy**: Preço de compra.
-  - **sell**: Preço de venda.
-  - **date**: Timestamp da última atualização.
+### **TickerResponse and Ticker**
+The `TickerResponse` and `Ticker` classes define the data model returned by the Mercado Bitcoin API. They map JSON data into Kotlin objects:
+- `TickerResponse` encapsulates the `Ticker` object.
+- `Ticker` contains the following fields:
+  - **high**: Highest trade value in the period.
+  - **low**: Lowest trade value in the period.
+  - **vol**: Traded volume.
+  - **last**: Last traded value.
+  - **buy**: Buy price.
+  - **sell**: Sell price.
+  - **date**: Timestamp of the last update.
 
-### **Dependência de Coroutines**
-No arquivo `build.gradle.kts`, a biblioteca `kotlinx-coroutines-android` foi adicionada. Essa dependência é essencial para:
-- Permitir a execução assíncrona de tarefas, como chamadas à API, sem bloquear a interface do usuário.
-- Gerenciar o fluxo de trabalho com uso de `Dispatchers.Main` para manipulação da interface e `Dispatchers.IO` para operações de entrada/saída.
-
----
-
-##  Tecnologias Utilizadas
-
-- **Linguagem:** Kotlin (Android)
-- **Frameworks e Bibliotecas:** Retrofit, Coroutines, GsonConverterFactory
-- **API de Mercado:** Mercado Bitcoin
-- **Design:** Material Design para uma interface moderna e responsiva.
+### **Coroutines Dependency**
+In `build.gradle.kts`, the `kotlinx-coroutines-android` library is added. This dependency is essential for:
+- Performing asynchronous tasks, such as API calls, without blocking the UI.
+- Managing workflow using `Dispatchers.Main` for UI updates and `Dispatchers.IO` for input/output operations.
 
 ---
 
-## Contato 
+## Technologies Used
 
-Se você tiver dúvidas ou sugestões, sinta-se à vontade para entrar em contato:  
+- **Language:** Kotlin (Android)
+- **Frameworks & Libraries:** Retrofit, Coroutines, GsonConverterFactory
+- **Market API:** Mercado Bitcoin
+- **Design:** Material Design for a modern and responsive interface
+
+---
+
+## Contact
+
+If you have any questions or suggestions, feel free to reach out:  
 📧 **amandacornelsen.c@gmail.com**  
 🌐 [GitHub](https://github.com/AmandaCornelsen)
